@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 import MapSim from '../components/MapSim';
 import { useMerchantsAvailable } from '../hooks/useMerchantsAvailable';
 import type { AvailableMerchant } from '../services/api';
+import ErrorBanner from '../components/ErrorBanner';
+import type { ApiErrorAction } from '../utils/apiError';
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
 
@@ -47,6 +49,10 @@ interface ExploreMapProps {
   onSelectOffer: (offerId: string) => void;
   amount?: number;
   loading?: boolean;
+  creationError?: string | null;
+  creationErrorAction?: ApiErrorAction;
+  onDismissCreationError?: () => void;
+  onRetryCreationError?: () => void;
 }
 
 const ExploreMap = ({
@@ -54,6 +60,10 @@ const ExploreMap = ({
   onSelectOffer,
   amount = 500,
   loading = false,
+  creationError,
+  creationErrorAction = 'retry',
+  onDismissCreationError,
+  onRetryCreationError,
 }: ExploreMapProps) => {
   const { state, refetch } = useMerchantsAvailable({
     amount_mxn: amount,
@@ -95,6 +105,17 @@ const ExploreMap = ({
       </header>
 
       <main className="pt-24 px-6 max-w-2xl mx-auto">
+        {creationError ? (
+          <ErrorBanner
+            message={creationError}
+            action={creationErrorAction}
+            onRetry={onRetryCreationError}
+            onDismiss={onDismissCreationError}
+            supportState="TRADE_CREATE"
+            className="mb-6"
+          />
+        ) : null}
+
         {/* Map Section */}
         <section className="mb-10">
           <MapSim />
