@@ -291,6 +291,10 @@ su país/contexto. Para empezar, se crearán **5 issues iniciales** en DRIPs. Es
 requieren pull request ni merge: se aceptan como resueltos cuando el participante entrega una
 respuesta estructurada, útil y sin datos personales sensibles.
 
+> 📄 **Texto completo listo para publicar:** ver [`WAVE6_RESEARCH_ISSUES.md`](./WAVE6_RESEARCH_ISSUES.md)
+> (cuerpo de cada issue, plantillas de respuesta y checklist de publicación). Los aprendizajes
+> agregados se vacían en [`VALIDATION_DRIPS.md`](./VALIDATION_DRIPS.md).
+
 **Principio privacy-first:** no pedir ni aceptar nombres reales, teléfonos, direcciones, wallets,
 llaves privadas, documentos, comprobantes, hashes de transacción, ingresos exactos, saldos exactos
 ni información financiera delicada. Las respuestas deben usar rangos, país/región general y relatos
