@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { useNavigate, useParams, Link } from 'react-router-dom';
+
 import {
   fetchTradeDetail,
   completeTrade,
@@ -23,8 +24,10 @@ interface TradeDetailProps {
 }
 
 async function getStoredToken(): Promise<string | null> {
+  // Deprecated: TradeDetail should rely on AppContext-provided tokens,
+  // but keeping a safe fallback avoids breaking existing flows.
   try {
-    const stored = await readJSON<{ buyer?: { token: string }; seller?: { token: string } }>('micopay_users');
+    const stored = await readJSON<{ buyer?: { token: string }; seller?: { token: string } }>('micopay_user');
     return stored?.buyer?.token ?? stored?.seller?.token ?? null;
   } catch {
     return null;
